@@ -77,6 +77,16 @@ class Tree {
     return root
   }
 
+  find(value) {
+    const search = (node, value) => {
+      if (node === null) return null
+      if (node.data === value) return node
+      return value < node.data ? search(node.left, value) : search(node.right, value)
+    }
+
+    return search(this.root, value)
+  }
+
   levelOrder(callback) {
     if (typeof callback !== 'function') {
       throw new Error('Callback function is required.')
